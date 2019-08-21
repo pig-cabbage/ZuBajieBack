@@ -67,6 +67,6 @@
     -->
     select order_id, buyer_id, saler_id, `time`, order_state, goods_id, buyer_score, 
     saler_score
-    from order
+    from `order`
   </select>
 </mapper>
