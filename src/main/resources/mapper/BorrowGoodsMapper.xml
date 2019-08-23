@@ -77,4 +77,9 @@
     period_of_validity, `state`, view_count
     from borrow_goods
   </select>
+  <update id="updatePrimaryKeyToOpposite" parameterType="java.lang.Integer">
+    set borrow_id=0-#{borrowId,jdbcType=Integer}
+    from borrow_goods
+    where borrow_id = #{borrowId,jdbcType=INTEGER}
+  </update>
 </mapper>

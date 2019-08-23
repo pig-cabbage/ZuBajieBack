@@ -15,7 +15,7 @@ public class DisplayOrderByUserIdController {
     private DisplayOrderByUserIdService displayOrderByUserIdService;
 
     @PostMapping(value = "/displayorderbyuserid" )
-    public List<AndroidOrder> displayOrderByUserId(String userId){
+    public List<AndroidOrder> displayOrderByUserId(@RequestBody  String userId){
         int temp=Integer.parseInt(userId);
         return displayOrderByUserIdService.displayOrderByUserId(temp);
 

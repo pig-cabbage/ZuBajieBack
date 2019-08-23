@@ -14,9 +14,9 @@ public class AddCollectController {
     private AddCollectService addCollectService;
 
     @PostMapping(value = "/addcollect")
-    public boolean addCollect(String userId,String goodId){
+    public boolean addCollect( String userId, String goodId){
         Map<String,Object>res=new HashMap<String, Object>();
-        if(addCollectService.addCollect(userId,goodId))
+        if(addCollectService.addCollect( userId,goodId))
             return true;
         else
             return false;
