@@ -6,7 +6,8 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 //使用md5算法对密码进行加密的工具类
-public class MD5Utils {
+public class
+MD5Utils {
     public static String md5(String plainText) {
         byte[] secretBytes = null;
         try {
