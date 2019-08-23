@@ -1,9 +1,12 @@
 package com.zubajie.service.AndroidEntity;
 
+import org.springframework.stereotype.Service;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+@Service
 public class Item implements Serializable {
     private int  goodId;//正数表示lendGood，负数表示borrowGood
 

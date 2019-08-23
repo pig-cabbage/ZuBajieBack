@@ -1,8 +1,11 @@
 package com.zubajie.service.AndroidEntity;
 
+import org.springframework.stereotype.Service;
+
 import java.io.Serializable;
 import java.util.Date;
 
+@Service
 public class AndroidOrder implements Serializable {
     /**
      *
