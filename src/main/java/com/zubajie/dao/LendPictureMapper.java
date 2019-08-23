@@ -1,5 +1,6 @@
 package com.zubajie.dao;
 
+import com.zubajie.entity.BorrowPicture;
 import com.zubajie.entity.LendPicture;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
@@ -28,4 +29,6 @@ public interface LendPictureMapper {
      * @mbg.generated
      */
     List<LendPicture> selectAll();
+
+    List<String> findByGoodId(Integer goodId);
 }

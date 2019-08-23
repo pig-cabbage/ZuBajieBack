@@ -2,13 +2,14 @@ package com.zubajie.service;
 
 import com.zubajie.entity.BorrowGoods;
 import com.zubajie.entity.LendGoods;
+import com.zubajie.service.AndroidEntity.Item;
 
 import java.util.List;
 
 public interface SearchGoodByNameService {
-    List<LendGoods> getLendGoodListByGroupName(String goodName);
+    List<Item> getLendGoodListByGroupName(String goodName);
 
-    List<BorrowGoods> getBorrowGoodListByGroupName(String goodName);
+    List<Item> getBorrowGoodListByGroupName(String goodName);
 
     float getSimilarityRatio(String str,String target);
 

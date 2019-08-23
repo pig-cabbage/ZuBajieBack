@@ -34,4 +34,9 @@
     select borrow_id, photo_url
     from borrow_picture
   </select>
+  <select id="findByGoodId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select photo_url
+    from borrow_picture
+    where borrow_id=#{goodId,jdbcType=INTEGER}
+  </select>
 </mapper>

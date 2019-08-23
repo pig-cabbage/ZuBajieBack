@@ -13,7 +13,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/addlenditem")
 public class CreateLendItemController {
     @Autowired
     private CreateLendItemService createLendItemService;
@@ -24,7 +23,7 @@ public class CreateLendItemController {
         Date nowDate=new Date();
         lendGoods.setCreateTime(nowDate);
         byte temp=0;
-        lendGoods.setState(temp);
+        lendGoods.setState(true);
         lendGoods.setViewCount(0);
         if(createLendItemService.createLendItem(lendGoods))
             res.put("success",1);

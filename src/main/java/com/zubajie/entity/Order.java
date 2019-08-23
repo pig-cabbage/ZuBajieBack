@@ -1,4 +1,5 @@
 package com.zubajie.entity;
+
 import java.io.Serializable;
 import java.util.Date;
 

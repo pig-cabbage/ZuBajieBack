@@ -13,8 +13,11 @@ public class AddCollectServiceimpl implements AddCollectService {
 
     //添加收藏
     @Override
-    public boolean addCollect(Collect collect){
-        if(collectMapper.insert(collect)==1)
+    public boolean addCollect(String userId,String goodId){
+        Collect temp=new Collect();
+        temp.setUserId(Integer.parseInt(userId));
+        temp.setGoodsId(Integer.parseInt(goodId));
+        if(collectMapper.insert(temp)==1)
             return true;
         else
             return false;

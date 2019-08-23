@@ -28,4 +28,6 @@ public interface BorrowPictureMapper {
      * @mbg.generated
      */
     List<BorrowPicture> selectAll();
+
+    List<String> findByGoodId(Integer goodId);
 }

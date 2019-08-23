@@ -15,7 +15,15 @@ import static org.junit.Assert.*;
 public class DisplayAllGoodControllerTest {
     @Autowired
     private DisplayAllGoodController displayAllGoodController;
+
+
     @Test
-    public void displayAllGoods() {
+    public void displayLendGoods() {
+        System.out.println(displayAllGoodController.displayLendGoods());
+    }
+
+    @Test
+    public void displayBorrowGoods() {
+        System.out.println(displayAllGoodController.displayBorrowGoods());
     }
 }
