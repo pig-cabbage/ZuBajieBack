@@ -16,10 +16,13 @@ public class LoginInController {
 
 
     @RequestMapping(value = "/login",method = RequestMethod.GET)
-    public Map<String,Object> login(@RequestParam String phoneNumber,@RequestParam String password){
+    public Map<String,Object> login(@RequestParam("phoneNumber") String phoneNumber,@RequestParam("password") String password){
         Map<String,Object>res=new HashMap<String, Object>();
-        if(loginInService.matchAccountAndPassword(phoneNumber,password))
-            res.put("success",1);
+        Integer userId=loginInService.matchAccountAndPassword(phoneNumber,password);
+        if(userId!=0) {
+            res.put("success", 1);
+            res.put("userId",userId);
+        }
         else
             res.put("success",0);
         return res;

@@ -16,20 +16,22 @@ public class LoginInServiceimpl implements LoginInService {
 
     //登录
     @Override
-    public boolean matchAccountAndPassword(String phoneNumber,String password){
+    public Integer matchAccountAndPassword(String phoneNumber, String password){
         List<User> allAccount=userMapper.selectAll();
         int temp=0;
+        Integer userId=0;
         for(int i=0;i<allAccount.size();++i){
             if(phoneNumber.equals(allAccount.get(i).getPhoneNumber())) {
                 temp=i;
+                userId=allAccount.get(i).getUserId();
                 break;
             }
             if(i==allAccount.size()-1)
-                return  false;
+                return 0;
         }
         if(MD5Utils.md5(password).equals(allAccount.get(temp).getPassword()))
-            return true;
+            return userId;
         else
-            return false;
+            return 0;
     }
 }
