@@ -44,5 +44,5 @@ public interface BorrowGoodsMapper {
      */
     int updateByPrimaryKey(BorrowGoods record);
 
-    int updatePrimaryKeyToOpposite(Integer BorrowId);
+
 }
