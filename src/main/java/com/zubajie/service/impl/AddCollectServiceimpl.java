@@ -8,13 +8,18 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class AddCollectServiceimpl implements AddCollectService {
+
+
     @Autowired
-    private CollectMapper collectMapper;
+    private CollectMapper mapper;
 
     //添加收藏
     @Override
-    public boolean addCollect(Collect collect){
-        if(collectMapper.insert(collect)==1)
+    public boolean addCollect(String userId,String goodId){
+        Collect temp=new Collect();
+        temp.setUserId(Integer.parseInt(userId));
+        temp.setGoodsId(Integer.parseInt(goodId));
+        if(mapper.insert(temp)==1)
             return true;
         else
             return false;

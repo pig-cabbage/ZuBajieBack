@@ -92,7 +92,7 @@ public class LendGoods implements Serializable {
      *
      * @mbg.generated
      */
-    private Byte state;
+    private boolean state;
 
     /**
      *
@@ -335,7 +335,7 @@ public class LendGoods implements Serializable {
      *
      * @mbg.generated
      */
-    public Byte getState() {
+    public boolean getState() {
         return state;
     }
 
@@ -347,7 +347,7 @@ public class LendGoods implements Serializable {
      *
      * @mbg.generated
      */
-    public void setState(Byte state) {
+    public void setState(boolean state) {
         this.state = state;
     }
 

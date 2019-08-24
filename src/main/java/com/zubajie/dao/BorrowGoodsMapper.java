@@ -43,4 +43,6 @@ public interface BorrowGoodsMapper {
      * @mbg.generated
      */
     int updateByPrimaryKey(BorrowGoods record);
+
+    int updatePrimaryKeyToOpposite(Integer BorrowId);
 }

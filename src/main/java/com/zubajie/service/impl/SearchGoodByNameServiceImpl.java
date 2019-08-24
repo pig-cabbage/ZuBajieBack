@@ -1,11 +1,11 @@
 package com.zubajie.service.impl;
 
-import com.zubajie.dao.BorrowGoodsMapper;
-import com.zubajie.dao.LendGoodsMapper;
+import com.zubajie.dao.*;
 import com.zubajie.entity.BorrowGoodWithSimiliarity;
 import com.zubajie.entity.BorrowGoods;
 import com.zubajie.entity.LendGoodWithSimiliarity;
 import com.zubajie.entity.LendGoods;
+import com.zubajie.service.AndroidEntity.Item;
 import com.zubajie.service.SearchGoodByNameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,12 +21,20 @@ public class SearchGoodByNameServiceImpl implements SearchGoodByNameService {
     private LendGoodsMapper lendGoodsMapper;
     @Autowired
     private BorrowGoodsMapper borrowGoodsMapper;
+    @Autowired
+    private LendPictureMapper lendPictureMapper;
+    @Autowired
+    private BorrowPictureMapper borrowPictureMapper;
+
+    @Autowired
+    private UserMapper userMapper;
 
     @Override
-    public List<LendGoods> getLendGoodListByGroupName(String goodName) {
+    public List<Item> getLendGoodListByGroupName(String goodName) {
         List<LendGoods>list=lendGoodsMapper.selectAll();
         List<LendGoodWithSimiliarity>list_1=new ArrayList<>();
-        List<LendGoods>result=new ArrayList<>();
+        List<LendGoods>result_1=new ArrayList<>();
+        List<Item>result=new ArrayList<>();
         Collections.sort(list_1, new Comparator<LendGoodWithSimiliarity>() {
             @Override
             public int compare(LendGoodWithSimiliarity o1, LendGoodWithSimiliarity o2) {
@@ -35,17 +43,33 @@ public class SearchGoodByNameServiceImpl implements SearchGoodByNameService {
         });
         for(int i=0;i<list_1.size();i++){
             if(list_1.get(i).getSimiliarity()>0){
-                result.add(lendGoodsMapper.selectByPrimaryKey(list_1.get(i).getLendGoodId()));
+                LendGoods temp=lendGoodsMapper.selectByPrimaryKey(list_1.get(i).getLendGoodId());
+
+                Item item=new Item();
+                item.setGoodId(temp.getLendId());
+                item.setTitle(temp.getTitle());
+                item.setDescription(temp.getDescription());
+                item.setUserId(temp.getUserId());
+                item.setCreateTime(temp.getCreateTime());
+                item.setValidity(temp.getPeriodOfValidity());
+                item.setImageList(lendPictureMapper.findByGoodId(temp.getLendId()));
+                System.out.println(temp.getLendId()+"啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊");
+                item.setUserImage(userMapper.selectByPrimaryKey(temp.getUserId()).getHeadPortrait());
+                item.setTag(temp.getTag());
+                item.setViewCount(temp.getViewCount());
+                item.setBorrow(false);
+                item.setPrice(temp.getPrice());
+                result.add(item);
             }
         }
         return result;
     }
 
     @Override
-    public List<BorrowGoods> getBorrowGoodListByGroupName(String goodName) {
+    public List<Item> getBorrowGoodListByGroupName(String goodName) {
         List<BorrowGoods>list=borrowGoodsMapper.selectAll();
         List<BorrowGoodWithSimiliarity>list_1=new ArrayList<>();
-        List<BorrowGoods>result=new ArrayList<>();
+        List<Item>result=new ArrayList<>();
         Collections.sort(list_1, new Comparator<BorrowGoodWithSimiliarity>() {
             @Override
             public int compare(BorrowGoodWithSimiliarity o1, BorrowGoodWithSimiliarity o2) {
@@ -54,7 +78,23 @@ public class SearchGoodByNameServiceImpl implements SearchGoodByNameService {
         });
         for(int i=0;i<list_1.size();i++){
             if(list_1.get(i).getSimiliarity()>0){
-                result.add(borrowGoodsMapper.selectByPrimaryKey(list_1.get(i).getBorrowGoodId()));
+                BorrowGoods temp=borrowGoodsMapper.selectByPrimaryKey(list_1.get(i).getBorrowGoodId());
+
+                Item item=new Item();
+                item.setGoodId(temp.getBorrowId());
+                item.setTitle(temp.getTitle());
+                item.setDescription(temp.getDescription());
+                item.setUserId(temp.getUserId());
+                item.setCreateTime(temp.getCreateTime());
+                item.setValidity(temp.getPeriodOfValidity());
+                item.setImageList(borrowPictureMapper.findByGoodId(temp.getBorrowId()));
+                System.out.println(temp.getBorrowId()+"啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊");
+                item.setUserImage(userMapper.selectByPrimaryKey(temp.getUserId()).getHeadPortrait());
+                item.setTag(temp.getTag());
+                item.setViewCount(temp.getViewCount());
+                item.setBorrow(true);
+                item.setPrice(temp.getPrice());
+                result.add(item);
             }
         }
         return result;
