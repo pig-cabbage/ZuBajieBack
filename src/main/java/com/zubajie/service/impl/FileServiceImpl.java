@@ -26,7 +26,6 @@ import java.util.Map;
 public class FileServiceImpl implements FileService {
 
 
-    @Autowired
     private UploadManager uploadManager;
 
     @Autowired

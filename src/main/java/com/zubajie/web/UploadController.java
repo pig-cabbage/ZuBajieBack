@@ -32,26 +32,26 @@ public class UploadController {
     @Autowired
     FileService fileService;
 
-    @Value("${baseUploadUrl}")
-    private String url;
-
-    @RequestMapping(value = "/uploadImg")
-    public Map<String,Object> uploadImg(@RequestParam(value = "file")MultipartFile upfile) throws IOException {
-        Map<String,Object> map = new HashMap<>();
-        String fileName = upfile.getOriginalFilename();
-        File file = new File(url + fileName);
-        try{
-            //将MulitpartFile文件转化为file文件格式
-            upfile.transferTo(file);
-            Map response = fileService.uploadFile(file);
-            Object imageName = response.get("imgName");
-            map.put("url",imageName);
-            map.put("state","SUCESS");
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return map;
-    }
+//    @Value("${baseUploadUrl}")
+//    private String url;
+//
+//    @RequestMapping(value = "/uploadImg")
+//    public Map<String,Object> uploadImg(@RequestParam(value = "file")MultipartFile upfile) throws IOException {
+//        Map<String,Object> map = new HashMap<>();
+//        String fileName = upfile.getOriginalFilename();
+//        File file = new File(url + fileName);
+//        try{
+//            //将MulitpartFile文件转化为file文件格式
+//            upfile.transferTo(file);
+//            Map response = fileService.uploadFile(file);
+//            Object imageName = response.get("imgName");
+//            map.put("url",imageName);
+//            map.put("state","SUCESS");
+//        }catch (Exception e){
+//            e.printStackTrace();
+//        }
+//        return map;
+//    }
 
     @RequestMapping("/getToken")
     public Map<String,Object> getToken(){
