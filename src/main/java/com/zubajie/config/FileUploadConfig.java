@@ -31,8 +31,8 @@ public class FileUploadConfig {
 
     private final MultipartProperties multipartProperties;
 
-    @Value("${baseUploadUrl}")
-    private String baseUploadUrl;
+    //@Value("${baseUploadUrl}")
+   // private String baseUploadUrl;
 
     @Value("${qiniu.accessKey}")
     private String accessKey;
@@ -47,14 +47,14 @@ public class FileUploadConfig {
     /**
      * 上传配置
      */
-    @Bean
-    @ConditionalOnMissingBean
-    public MultipartConfigElement multipartConfigElement() {
-        MultipartConfigFactory factory = new MultipartConfigFactory();
-        judge(baseUploadUrl);
-        factory.setLocation(baseUploadUrl);
-        return factory.createMultipartConfig();
-    }
+//    @Bean
+//    @ConditionalOnMissingBean
+//    public MultipartConfigElement multipartConfigElement() {
+//        MultipartConfigFactory factory = new MultipartConfigFactory();
+//        //judge(baseUploadUrl);
+//        factory.setLocation(baseUploadUrl);
+//        return factory.createMultipartConfig();
+//    }
 
     public void judge(String filePath){
         File file = new File(filePath);
